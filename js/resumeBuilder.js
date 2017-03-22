@@ -16,18 +16,18 @@ var bio = {
         $("#header").prepend(HTMLheaderRole.replace("%data%", this.role));
         $("#header").prepend(HTMLheaderName.replace("%data%", this.name));
 
-        $("#topContacts").append(HTMLmobile.replace("%data%", this.contacts.mobile));
-        $("#topContacts").append(HTMLemail.replace("%data%", this.contacts.email));
-        $("#topContacts").append(HTMLgithub.replace("%data%", this.contacts.github));
-        $("#topContacts").append(HTMLtwitter.replace("%data%", this.contacts.twitter));
-        $("#topContacts").append(HTMLlocation.replace("%data%", this.contacts.location));
+        $("#topContacts, #footerContacts").append(HTMLmobile.replace("%data%", this.contacts.mobile));
+        $("#topContacts, #footerContacts").append(HTMLemail.replace("%data%", this.contacts.email));
+        $("#topContacts, #footerContacts").append(HTMLgithub.replace("%data%", this.contacts.github));
+        $("#topContacts, #footerContacts").append(HTMLtwitter.replace("%data%", this.contacts.twitter));
+        $("#topContacts, #footerContacts").append(HTMLlocation.replace("%data%", this.contacts.location));
 
         $("#header").append(HTMLbioPic.replace("%data%", this.biopic));
         $("#header").append(HTMLwelcomeMsg.replace("%data%", this.welcomeMessage));
 
         if (this.skills && this.skills.length > 0) {
             $("#header").append(HTMLskillsStart);
-            this.skills.map(function(skill) {
+            this.skills.forEach(function(skill) {
                 $("#skills").append(HTMLskills.replace("%data%", skill));
             });
         }
@@ -82,20 +82,20 @@ var education = {
         }
     ],
     display: function() {
-        this.schools.map(function(school) {
+        this.schools.forEach(function(school) {
             $("#education").append(HTMLschoolStart);
             $(".education-entry:last").append(HTMLschoolName.replace("%data%", school.name) + HTMLschoolDegree.replace("%data%", school.degree));
             $(".education-entry:last").append(HTMLschoolDates.replace("%data%", school.dates));
             $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", school.location));
 
-            school.majors.map(function(major) {
+            school.majors.forEach(function(major) {
                 $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", major));
             });
         });
 
         if (this.onlineCourses.length > 0) {
             $("#education").append(HTMLonlineClasses);
-            this.onlineCourses.map(function(course) {
+            this.onlineCourses.forEach(function(course) {
                 $("#education").append(HTMLschoolStart);
                 $(".education-entry:last").append(HTMLonlineTitle.replace("%data%", course.title) + HTMLonlineSchool.replace("%data%", course.school));
                 $(".education-entry:last").append(HTMLonlineDates.replace("%data%", course.dates));
@@ -122,7 +122,7 @@ var work = {
         }
     ],
     display: function() {
-        this.jobs.map(function(job) {
+        this.jobs.forEach(function(job) {
             $("#workExperience").append(HTMLworkStart);
             $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", job.employer) + HTMLworkTitle.replace("%data%", job.title));
             $(".work-entry:last").append(HTMLworkLocation.replace("%data%", job.location));
@@ -142,13 +142,13 @@ var projects = {
         ]
     }],
     display: function() {
-        this.projects.map(function(project) {
+        this.projects.forEach(function(project) {
             $("#projects").append(HTMLprojectStart);
             $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", project.title));
             $(".project-entry:last").append(HTMLprojectDates.replace("%data%", project.dates));
             $(".project-entry:last").append(HTMLprojectDescription.replace("%data%", project.description));
 
-            project.images.map(function(image) {
+            project.images.forEach(function(image) {
                 $(".project-entry:last").append(HTMLprojectImage.replace("%data%", image));
             });
 
